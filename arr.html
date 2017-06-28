@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+</body>
+<script>
+	window.onload=function(){
+		next();
+	}
+	var arr=[];	
+	function next(){
+		var len=6-arr.length;
+		for(var i=0;i<len;i++){
+			var num=mGetRandom(1,33);
+			arr.push(num);
+		}
+		arr.sort(function(a,b){
+			return a-b;
+		})
+		arr=arr.unique();
+		if(arr.length<6){
+			next()
+		} else{
+			arr.join(",");
+			console.log(arr);
+		}
+	}
+	Array.prototype.unique = function(key) {
+	    var arr = this;
+	    var n = [arr[0]];
+	    for (var i = 1; i < arr.length; i++) {
+	        if (key === undefined) {
+	            if (n.indexOf(arr[i]) == -1) n.push(arr[i]);
+	        } else {
+	            inner: {
+	                var has = false;
+	                for (var j = 0; j < n.length; j++) {
+	                    if (arr[i][key] == n[j][key]) {
+	                        has = true;
+	                        break inner;
+	                    }
+	                }
+	            }
+	            if (!has) {
+	                n.push(arr[i]);
+	            }
+	        }
+	    }
+	    return n;
+	}
+	function mGetRandom(x, y) {  
+	   return parseInt(Math.random() * (y - x + 1) + x);  
+	}; 
+</script>
+</html>
